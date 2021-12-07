@@ -1,68 +1,279 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Rarible NFT Minter</title>
+    <title>Rarible NFT Minter App Zero Gas Fees</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Adefeytimi Gbolahan Adeyeloja">
+    <meta name="description" content="Web3 NFT Minting App Zero Gas Fees">
     <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
     <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
     <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet"/>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      rel="stylesheet"
+    />
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
     <!-- MDB -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css" rel="stylesheet"/>
-    <style>
-        body{
-            text-align: center;
-            background-color: #04001a;
-        }
-        #app{
-            display: none;
-            margin-top: 10px;
-            height: 350px;
-            background-color: white;
-            padding: 20px;
-            border-radius: 20px;
-            color: #424242;
-        }
-        .form_element{
-            margin-top: 20px;
-        }
-        .title{
-            color: #fff;
-            margin-top: 10px;
-        }
-        #success_message{
-            background-color: #c4ffc4;
-            border: 1px solid #0fcf0f;
-            border-radius: 4px;
-            display: none;
-        }
-    </style>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css"
+      rel="stylesheet"
+    />
+    <!-- BootStrap CSS Style  -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./css/main.css" />
+    <!-- Js Logic -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <script type="text/javascript" src="./js/main.js" defer></script>
   </head>
 
   <body>
-        <div class="container">
-            <div class="row">
-                <h1 class="title">Rarible NFT Minter</h1>
-                <div id="app" class="col-md-4 offset-md-4">
-                    <div id="success_message">
-                        
-                    </div>
-                    <div class="form_element">
-                    <input class="form-control type="text" id="input_name" name="name" placeholder="Token name">
-                    </div>
-                    <div class="form_element">
-                    <input class="form-control type="text" id="input_description" name="description" placeholder="Description">
-                    </div>
-                    <div class="form_element">
-                    <input class="form-control" type="file" id="input_image" name="image" accept="image/png, image/jpeg">
-                    </div>
-                    <div class="form_element">
-                    <button class="btn btn-primary btn-lg btn-block" id="submit_button">Mint</button>
-                    </div>
-                </div>
-            </div>
+    <nav class="navbar navbar-expand-lg bg_transparent">
+      <div class="container nav-container">
+        <a class="navbar-brand" href="#">Steph<span>NFT</span> </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="fas fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Market</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Explore</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Community</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Features</a>
+            </li>
+            <!-- <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Dropdown
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </li>
+              </ul>
+            </li> -->
+          </ul>
+          <!-- <form class="d-flex">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+          </form> -->
+          <button class="btn btn_yellow" type="button" id="authenticate">
+            Sign In
+          </button>
         </div>
-    <script type="text/javascript" src="./main.js"></script>
+      </div>
+    </nav>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alert">
+      Test
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <section class="container d-flex flex-row mt-3">
+      <div class="banner text-white">
+        <div class="row">
+          <div class="col-sm-12 col-xs-12 col-lg-6 col-md-6 col-xl-6">
+            <div class="">
+              <h1>Mint Super Rare Digital Artworks</h1>
+              <p class="text-start">
+                Each Unique. Each Beautiful. Each Rare.<br />
+                Create and Promote your best of your NFT Collection.
+              </p>
+            </div>
+
+            <div class="d-flex justify-content-start">
+              <button
+                class="btn btn_yellow start"
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#getstarted"
+              >
+                Start Minting
+              </button>
+              <button
+                class="btn btn_yellow start"
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#mintcomplete"
+                id="mintcompletebtn"
+              >
+                Mint Complete Button
+              </button>
+            </div>
+          </div>
+          <div class="col-sm-12 col-xs-12 col-lg-6 col-md-6 col-xl-6" id="art">
+            <div>
+              <div class="right_col">
+                <img
+                  class="img_banner_left"
+                  src="./img/1_home.png"
+                  alt="Artwork"
+                  class="fluid"
+                />
+                <img
+                  class="img_banner_right"
+                  src="./img/2_home.png"
+                  alt="Artwork"
+                  class="fluid"
+                />
+              </div>
+            </div>
+          </div>
+          <div id="app" class="col-sm-12 col-xs-12 col-lg-6 col-md-6 col-xl-6">
+            <div id="success_message"></div>
+            <div class="form_element">
+              <input class="form-control type="text" id="input_name" name="name"
+              placeholder="Token name">
+            </div>
+            <div class="form_element">
+              <input class="form-control type="text" id="input_description"
+              name="description" placeholder="Description">
+            </div>
+            <div class="form_element">
+              <input
+                class="form-control"
+                type="file"
+                id="input_image"
+                name="image"
+                accept="image/png, image/jpeg"
+              />
+            </div>
+            <div class="form_element">
+              <button class="btn-lg btn btn_yellow btn-block" id="submit_button">
+                Mint
+              </button>
+              <button class="btn-lg btn btn_yellow btn-block" id="logout_button">
+                Log Out
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="getstarted"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="Get Started!"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="Get Started!">Steph NFT</h4>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p class="text-start">StephNFT is an NFT Minting Platform built with JavaScript, Rarible Plugin, Moralis SDK and Web3.js ,<br>It takes into consideration that a lot of artists would love to create their own NFTs but can't afford to hence why this platform lets you mint your NFTs for Zero Gas Fees.</p>
+            <p class="text-start text-warning">Disclaimer: This version only deploys NFTs to the Rinkeby Testnet.</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn_yellow"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <!-- <button type="button" class="btn btn-primary">Understood</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="mintcomplete"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="Mint Complete"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="mintCompleteHeading">Mint Complete</h4>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p class="text-start">Your NFT is Minted and Published to the Rarible MarketPlace</p>
+            <p id="mintMessage"></p>
+            <p class="text-start text-warning">Disclaimer: This version only deploys NFTs to the Rinkeby Testnet. You can't put this up for sale.</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn_yellow"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <!-- <button type="button" class="btn btn-primary">Understood</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
   </body>
 </html>
