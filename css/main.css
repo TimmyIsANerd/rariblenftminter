@@ -2,6 +2,7 @@ body {
   text-align: center;
   background-color: #150423;
   transition: 0.8s;
+  max-height: 650px;
 }
 /* Navbar Styles */
 .navbar a {

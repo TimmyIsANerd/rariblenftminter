@@ -4,6 +4,18 @@ $("document").ready(() => {
   $('#mintcompletebtn').hide();
 
   const { ethereum } = window;
+  
+  function WalletTest() {
+    if (!ethereum) {
+      $("#alert").text("Please make sure you have MetaMask Wallet Installed!");
+      $("#alert").fadeIn(400);
+    } else {
+      console.log("Ethereum Wallet located");
+      WalletNetworkTest();
+    }
+  }
+
+  WalletTest();
 
   const rinkebyChainId = "0x4";
   // If Wallet Network Change: Rinkeby
@@ -35,24 +47,13 @@ $("document").ready(() => {
     }
   }
 
-  function WalletTest() {
-    if (!ethereum) {
-      $("#alert").text("Please make sure you have MetaMask Wallet Installed!");
-      $("#alert").fadeIn(400);
-    } else {
-      console.log("Ethereum Wallet located");
-      WalletNetworkTest();
-    }
-  }
-
-  WalletTest();
   $("#alert").click(() => {
     $("#alert").fadeOut(500);
   });
 
   /** Connect to Moralis server */
-  const serverUrl = "https://ax8nsn53aney.usemoralis.com:2053/server";
-  const appId = "Chc31pN0f4vjbRGhWlJGXlFwNPgUINA6CPl2b36D";
+  const serverUrl = "";
+  const appId = "";
   Moralis.start({ serverUrl, appId });
   let user = Moralis.User.current();
   const signIn = $("#authenticate");
