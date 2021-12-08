@@ -52,8 +52,8 @@ $("document").ready(() => {
   });
 
   /** Connect to Moralis server */
-  const serverUrl = "https://ax8nsn53aney.usemoralis.com:2053/server";
-  const appId = "Chc31pN0f4vjbRGhWlJGXlFwNPgUINA6CPl2b36D";
+  const serverUrl = "";
+  const appId = "";
   Moralis.start({ serverUrl, appId });
   let user = Moralis.User.current();
   const signIn = $("#authenticate");
