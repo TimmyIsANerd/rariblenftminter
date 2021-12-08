@@ -52,8 +52,8 @@ $("document").ready(() => {
   });
 
   /** Connect to Moralis server */
-  const serverUrl = "";
-  const appId = "";
+  const serverUrl = "https://ax8nsn53aney.usemoralis.com:2053/server";
+  const appId = "Chc31pN0f4vjbRGhWlJGXlFwNPgUINA6CPl2b36D";
   Moralis.start({ serverUrl, appId });
   let user = Moralis.User.current();
   const signIn = $("#authenticate");
@@ -103,14 +103,15 @@ $("document").ready(() => {
   });
 
   function initApp() {
-    if (user) {
+    if (!user) {
+      alert("User isn't Logged In!");
+      return false;
+    } else {
       $("#art").fadeOut(800, () => {
         $("#app").fadeIn(800);
       });
       document.querySelector("#submit_button").onclick = submit;
       signIn.text("Authenticated!");
-    } else {
-      alert("User isn't Logged In!");
     }
   }
 
@@ -176,7 +177,7 @@ $("document").ready(() => {
     const SuccessMessageModal = document.getElementById('mintcomplete');
     const successModalBtn = document.getElementById('mintcompletebtn');
     successModalBtn.click();
-    $("#submit_button").text('Minting');
+    $("#submit_button").text('Mint');
   }
 
   // login();
